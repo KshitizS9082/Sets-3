@@ -143,9 +143,6 @@ struct sets2{
     }
 }
 extension sets2{
-    //    var scoreForAddCard: Double{
-    //        return -0.5
-    //    }
     var scoreForWrongMatch: Double{
         return -3.5
     }

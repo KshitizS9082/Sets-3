@@ -11,18 +11,10 @@ import UIKit
 class Board: UIView {
     var deck = cardDeck(){
         didSet{
-//            if !addingCard{
-//                setNeedsLayout()
-//                setNeedsDisplay()
-//            }
         }
     }
     var cardsOnBoard: [Card] = []{
         didSet{
-//            if !addingCard{
-//                setNeedsLayout()
-//                setNeedsDisplay()
-//            }
         }
     }
     var completeResetView = true
@@ -30,7 +22,6 @@ class Board: UIView {
     var cardsCount: Int = 0{
         didSet{
             if completeResetView{
-//                print("21")
                 setRowCol()
                 grid = Grid(layout: Grid.Layout.dimensions(rowCount: row, columnCount: col), frame: bounds)
                 setNeedsLayout()
@@ -46,43 +37,13 @@ class Board: UIView {
     }
     func addCards(_ oldBoard: Board, newGame: sets2 ){
         completeResetView = false
-//        self.cardsCount =  newGame.cardsOnBoard.count
         self.deck = newGame.deck
         self.cardsOnBoard = newGame.cardsOnBoard
         self.cardsCount =  newGame.cardsOnBoard.count
         setRowCol()
         grid = Grid(layout: Grid.Layout.dimensions(rowCount: row, columnCount: col), frame: bounds)
-//        print("2222completeres \(completeResetView)")
         setNeedsLayout()
         print("escaped setneedslayout")
-//        setNeedsLayout()
-//        completeResetView = true
-//        setRowCol()
-//        UIView.transition(
-//            with: self,
-//            duration: 1.5,
-//            options: UIView.AnimationOptions.curveLinear,
-//            animations: {
-////                for subview in self.subviews{
-////                    subview.alpha=0
-////                }
-//                self.addingCard = true
-//                self.deck = newGame.deck
-//                self.cardsCount = newGame.cardsOnBoard.count
-//                self.cardsOnBoard = newGame.cardsOnBoard
-//                self.addingCard = false
-//                for ind in self.subviews.indices{
-//                    self.subviews[ind].frame.origin = self.grid.cellFrames[ind].origin
-//                }
-//            }
-//        )
-////        UIView.transition(
-////            from: <#T##UIView#>,
-////            to: <#T##UIView#>,
-////            duration: <#T##TimeInterval#>,
-////            options: <#T##UIView.AnimationOptions#>,
-////            completion: <#T##((Bool) -> Void)?##((Bool) -> Void)?##(Bool) -> Void#>
-////        )
     }
     lazy var row = 9
     lazy var col = 9
@@ -111,10 +72,8 @@ class Board: UIView {
         }else {
             print("Error: cardsCount in Board.sift out of range")
         }
-        //        print("mfjhewjf- \(row), \(col)")
     }
     lazy var grid = Grid(layout: Grid.Layout.dimensions(rowCount: row, columnCount: col), frame: bounds)
-    //    var frameLocation: [CGRect]
     
     override func draw(_ rect: CGRect) {
         
@@ -158,23 +117,17 @@ class Board: UIView {
                     )
                 }else{
                     print("entered case where new cards are to be placed")
-//                    let temp = newCardViews[index]
                     let requiredOrigin = newCardViews[index].frame.origin
                     newCardViews[index].frame.origin = CGPoint(x: -2*newCardViews[index].frame.width, y: newCardViews[index].frame.origin.y)
                     self.addSubview(newCardViews[index])
-//                    print("index if card added = \(String(describing: self.subviews.index(of: temp)))")
-//                    self.addSubview(newCardViews[index])
                     UIView.transition(
                         with: self,
                         duration: 0.3,
                         options: UIView.AnimationOptions.curveEaseOut,
                         animations: {
-//                            print("started moving to \(newCardViews[index].frame.origin.x)")
                             self.subviews[index].frame.origin = requiredOrigin
                     }
                     )
-//                    print("newCardViews[index].frame.origin=  \(newCardViews[index].frame.origin)")
-//                    print("self.subviews[index].frame.origin = \(self.subviews[index].frame.origin)" )
                 }
             }
             print("self.subviews.count = \(self.subviews.count)")

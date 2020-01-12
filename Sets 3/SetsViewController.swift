@@ -6,15 +6,11 @@ class SetsViewController: UIViewController {
     var game = sets2()
     let westw = 2
     lazy var screenSize = UIScreen.main.bounds
-    //    let width = screenSize.width
     lazy var boardView = Board(frame: CGRect(x: screenSize.width*5/100 , y: screenSize.height*5/100, width: screenSize.width*90/100, height: screenSize.height*75/100))
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        //        print("asdf")
         reInitialiseBoard()
-        //        print("qwerty")
         self.view.addSubview(boardView)
-        //        print("zxcvb")
     }
     
     @objc func newGame2(_ sender: UIButton) {
@@ -29,9 +25,6 @@ class SetsViewController: UIViewController {
             animations: {
                 
                 self.boardView.frame.origin = CGPoint(x: self.screenSize.width*1.25, y: self.boardView.frame.origin.y)
-//                self.boardView.clearAllSubviews()
-//                self.reInitialiseBoard()
-//                self.boardView.frame.origin = originEarlier
             },
             completion: { finished in
                 UIView.transition(
@@ -46,8 +39,6 @@ class SetsViewController: UIViewController {
                 )
             }
         )
-//        boardView.clearAllSubviews()
-//        reInitialiseBoard()
     }
     lazy var height = screenSize.height
     lazy var width = screenSize.width
@@ -124,22 +115,15 @@ class SetsViewController: UIViewController {
                 return boardView.grid.cellFrames.count
             }
         }
-        for index in 0..<range{
-            //            print("\(index) entered")
-            if boardView.grid.cellFrames[index].contains(location){
-                //                print(index)
+        for index in 0..<range{            if boardView.grid.cellFrames[index].contains(location){
                 selectCard(at: index)
                 break
             }
-            //            print("\(index) escaped")
         }
         
     }
     func selectCard(at Index: Int) {
         game.chooseCard(at: Index)
-//        if game.cardsOnBoard.count < boardView.cardsOnBoard.count{
-//            boardView.addCards(boardView, newGame: game)
-//        }
         boardView.clearAllSubviews()
         reInitialiseBoard()
         //If Game Finished
@@ -163,11 +147,6 @@ class SetsViewController: UIViewController {
     @objc func AddCards2(_ sender: UIButton) {
         game.addCard()
         boardView.addCards(boardView, newGame: game)
-//        boardView.clearAllSubviews()
-//        reInitialiseBoard()
-//        //        game.game_finished=true
-//        let oldBoardView = boardView
-//        boardView.addCards(oldBoardView, newGame: game)
     }
     func reInitialiseBoard(){
         boardView.deck = game.deck

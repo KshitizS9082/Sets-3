@@ -20,7 +20,6 @@ class cardView: UIView {
             #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0).setStroke()
             roundedRect.stroke()
         }
-        ///////////////////////
         if card.shape == 0{//Oval shape
             switch card.number{
             case .one:
